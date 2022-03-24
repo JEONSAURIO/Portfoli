@@ -1,0 +1,17 @@
+USE prueba;
+
+CREATE TABLE matricula(
+alumne INTEGER,
+FOREIGN KEY (alumne) REFERENCES alumno(dni)
+);
+
+CREATE TABLE alumno(
+dni INTEGER PRIMARY KEY,
+nom VARCHAR(20) NOT NULL
+);
+
+ALTER TABLE alumno ADD cognom VARCHAR(20) NOT NULL;
+ALTER TABLE alumno CHANGE cognom cognoms VARCHAR(20) NOT NULL;
+ALTER TABLE alumno MODIFY cognoms TEXT(20) NOT NULL;
+ALTER TABLE alumno RENAME alumnos;
+DROP TABLE alumno;

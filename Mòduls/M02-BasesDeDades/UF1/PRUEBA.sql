@@ -1,0 +1,9 @@
+USE EJ1;
+
+CREATE TABLE CLIENTE(
+idclient	INTEGER AUTO_INCREMENT,	
+nom		CHAR(20)	UNIQUE,
+cognoms	CHAR(20)	UNIQUE,
+datanaixement	DATE,
+tipus 	TEXT 	DEFAULT
+);

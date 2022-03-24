@@ -1,0 +1,8 @@
+USE UF2_EJS;
+
+CREATE TABLE DEPARTAMENT2(
+num		TINYINT(2) ,
+nom 	VARCHAR(9) UNIQUE,
+localitzacio	VARCHAR(10),
+PRIMARY KEY (num)
+);

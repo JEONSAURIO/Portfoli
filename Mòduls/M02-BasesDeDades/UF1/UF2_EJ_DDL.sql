@@ -1,0 +1,69 @@
+DROP DATABASE EX_DDL;
+CREATE DATABASE EX_DDL;
+USE EX_DDL;
+
+
+CREATE TABLE TITOL(
+codi_titol	INTEGER		AUTO_INCREMENT,
+nom			VARCHAR(20) NOT NULL,
+PRIMARY KEY (codi_titol)
+);
+
+CREATE TABLE CATEGORIA(
+codi_categoria	INTEGER		AUTO_INCREMENT,
+nom				VARCHAR(20) NOT NULL,
+sou_base		DECIMAL		NOT NULL,	
+hores_extres	TIME,
+PRIMARY KEY (codi_categoria)
+);
+
+CREATE TABLE CENTRAL_SINDICAL(
+codi_central	INTEGER		AUTO_INCREMENT,
+nom				VARCHAR(20) NOT NULL,
+sou_base		DECIMAL		NOT NULL,
+PRIMARY KEY (codi_central)
+);
+
+CREATE TABLE CIUTAT(
+codi_ciutat	INTEGER		AUTO_INCREMENT,
+nom			VARCHAR(20) NOT NULL,
+PRIMARY KEY (codi_ciutat)
+);
+
+CREATE TABLE AGENCIA(
+codi_agencia	INTEGER		AUTO_INCREMENT,
+nom				VARCHAR(20) NOT NULL,
+adreca			VARCHAR(50) NOT NULL,
+telefon			VARCHAR(9),
+ciutat			INTEGER,
+PRIMARY KEY (codi_agencia),
+FOREIGN KEY (ciutat) 		REFERENCES CIUTAT(codi_ciutat)
+);
+
+
+CREATE TABLE EMPLEAT(
+codi_empleat	INTEGER		AUTO_INCREMENT,
+dni				VARCHAR(9)	NOT NULL 			UNIQUE,
+nom				VARCHAR(20) NOT NULL,
+cognom			VARCHAR(20) NOT NULL,
+categoria		INTEGER,
+agencia			INTEGER,
+ciutat			INTEGER,
+central			INTEGER,
+PRIMARY KEY(codi_empleat),
+FOREIGN KEY (categoria) REFERENCES CATEGORIA(codi_categoria),
+FOREIGN KEY (agencia) 	REFERENCES AGENCIA(codi_agencia),
+FOREIGN KEY (ciutat) 	REFERENCES CIUTAT(codi_ciutat),
+FOREIGN KEY (central) 	REFERENCES CENTRAL_SINDICAL(codi_central)
+);
+
+CREATE TABLE TITULACIONS(
+data_obtencio	DATE		NOT NULL	UNIQUE,
+titol			INTEGER,
+empleat			INTEGER,
+PRIMARY KEY (titol, empleat),
+FOREIGN KEY (titol)		REFERENCES TITOL(codi_titol),
+FOREIGN KEY (empleat) 	REFERENCES EMPLEAT(codi_empleat)
+);
+
+
