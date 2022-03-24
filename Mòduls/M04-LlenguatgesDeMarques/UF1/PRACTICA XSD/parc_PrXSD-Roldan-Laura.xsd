@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="">
+  <xs:element name="parc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="adreca" type="xs:string"/>
+        <xs:element name="ciutat" type="xs:string"/>
+        <xs:element name="pais" type="xs:string"/>
+        <xs:element name="paginaWeb" type="xs:string"/>
+        <xs:element ref="dates"/>
+        <xs:element ref="horaris"/>
+        <xs:element ref="espectacles"/>
+        <xs:element ref="restaurants"/>
+      </xs:sequence>
+      <xs:attribute name="nom" type="xs:string " use="required" fixed="CoperAventura S.A."/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="dataObertura"/>
+        <xs:element name="dataTancament"/>
+      </xs:sequence>
+      <xs:attribute type="xs:date"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="horaris">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="mes" maxOccurs="7"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="horaObertura" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="nom" type="mesos " use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="horaObertura">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="periode" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="hora" type="xs:time" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="periode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="diaSetmana" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="diaInici" type="diesMes" use="required"/>
+      <xs:attribute name="diaFinal" type="diesMes" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="diaSetmana">
+    <xs:complexType>
+      <xs:sequence>
+      </xs:sequence>
+      <xs:attribute type="diesSetmana" maxOccurs="7"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="espectacles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="mes" maxOccurs="7"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--
+  <xs:simpleType name="mesos">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Juliol">
+      <xs:enumeration value="Agost">
+      <xs:enumeration value="Setembre">
+      <xs:enumeration value="Octubre">
+      <xs:enumeration value="Novembre">
+      <xs:enumeration value="Desembre">
+      <xs:enumeration value="Gener">
+    </xs:restriction>
+  </xs:simpleType>
+-->
+</xs:schema>
